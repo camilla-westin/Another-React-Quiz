@@ -2,13 +2,22 @@ import React from "react"
 import Answers from "./Answers"
 
 export default function Quiz(props) {
-    // console.log(props)
+    const [showButton, setShowButton] = React.useState(false);
+
+    function handleAnswerClick() {
+      setShowButton(true);
+    }
+
     return (
         <div className="quizbox"> 
             <h2 className="question">{props.question}</h2>       
             <Answers 
                 key={props.id}
-                answers={props.answer}  />       
+                answers={props.answer}
+                handleAnswerClick={handleAnswerClick}
+            />           
+
+            {showButton ? <button className="fancy-btn">Next question</button> : null}  
         </div>                   
     )
 }

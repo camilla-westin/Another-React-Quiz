@@ -20,7 +20,9 @@ function App() {
       <header className="App-header">     
         <h1>Another React Quiz</h1>
       </header>
-      {allQuizElements}
+      <div className="quiz">
+        {allQuizElements}
+      </div>
     </div>
   );
 }

@@ -118,7 +118,7 @@ ul.answers {
             }
         }
 
-        &.right {
+        &.correct {
             p, p.disabled {
                 color: #589c4e!important;
 
@@ -129,7 +129,7 @@ ul.answers {
             }
         }
 
-        &.wrong {
+        &.incorrect {
             p, p.disabled {
                 color: red!important;
 

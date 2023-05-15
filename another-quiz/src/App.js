@@ -12,6 +12,7 @@ function App() {
           key={qa.id}  
           question={qa.question}
           answer={qa.answers}
+          correct={qa.correct}
       />
   ))
 

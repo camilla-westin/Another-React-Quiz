@@ -4,16 +4,16 @@ export default function Answers(props) {
     const [isDisabled, setIsDisabled] = React.useState(false)
 
     function handleButtonClick(index) {
-        props.handleAnswerClick();
-        setIsDisabled(true);
-        checkAnswer(index);
+        props.handleAnswerClick()
+        setIsDisabled(true)
+        checkAnswer(index)
     }
 
     function checkAnswer(selectedIndex) {
         if (selectedIndex === props.correct) {
-          console.log("Correct answer!");
+         console.log("correct")
         } else {
-          console.log("Incorrect answer!");
+          console.log("incorrect")
         }
       }
 

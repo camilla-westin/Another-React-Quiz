@@ -11,11 +11,13 @@ export default function Answers(props) {
 
     function checkAnswer(selectedIndex) {
         if (selectedIndex === props.correct) {
-         console.log("correct")
+            props.increaseScore()
+            console.log("correct")
+        
         } else {
           console.log("incorrect")
         }
-      }
+    }
 
     return (
         <ul className="answers">

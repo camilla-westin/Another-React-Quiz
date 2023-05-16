@@ -6,13 +6,14 @@ import Quiz from "./Quiz"
 function App() {
 
   const [quizElements, setQuizElements] = React.useState(data)
-    
+
   const allQuizElements = quizElements.map(qa => (
       <Quiz 
           key={qa.id}  
           question={qa.question}
           answer={qa.answers}
           correct={qa.correct}
+          total={data.length}
       />
   ))
 

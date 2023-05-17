@@ -26,7 +26,7 @@ export default function Quiz(props) {
                 increaseScore={handleIncreaseScore}
             />           
 
-            {showButton ? <button className="fancy-btn">Next question</button> : null}  
+            {showButton ? <button className="fancy-btn" onClick={props.onNextButtonClick}>Next question</button> : null}  
         </div>                   
     )
 }

@@ -5,17 +5,16 @@ import Quiz from "./Quiz"
 
 function App() {
 
-  const [quizElements, setQuizElements] = React.useState(data)
+  const [quizElements] = React.useState(data)
+  const [currentQuizIndex, setCurrentQuizIndex] = React.useState(0);
 
-  const allQuizElements = quizElements.map(qa => (
-      <Quiz 
-          key={qa.id}  
-          question={qa.question}
-          answer={qa.answers}
-          correct={qa.correct}
-          total={data.length}
-      />
-  ))
+  const handleNextButtonClick = () => {
+    setCurrentQuizIndex((prevIndex) => prevIndex + 1);
+  };
+
+  const currentQuiz = quizElements[currentQuizIndex];
+
+  console.log(currentQuiz);
 
   return (
     <div className="App">
@@ -23,7 +22,17 @@ function App() {
         <h1>Another React Quiz</h1>
       </header>
       <div className="quiz">
-        {allQuizElements}
+      {currentQuiz && (
+          <Quiz
+            key={currentQuiz.id}
+            id={currentQuiz.id}
+            question={currentQuiz.question}
+            answer={currentQuiz.answers}
+            correct={currentQuiz.correct}
+            total={data.length}
+            onNextButtonClick={handleNextButtonClick}
+          />
+        )}
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ export default function Answers(props) {
         const updatedClassNames = props.answers.map((_, index) =>
             index === selectedIndex && selectedIndex === props.correct
             ? "correct"
-            : index === selectedIndex && selectedIndex != props.correct
+            : index === selectedIndex && selectedIndex !== props.correct
             ? "incorrect"
             : ""
         );

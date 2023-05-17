@@ -10,7 +10,8 @@ export default function Quiz(props) {
     }  
 
     function handleIncreaseScore() {
-        setScore((prevScore) => prevScore + 1)     
+        setScore((prevScore) => prevScore + 1)   
+     
     }
 
     return (

@@ -1,30 +1,42 @@
 import React from "react"
 
 export default function Answers(props) {
-    const [isDisabled, setIsDisabled] = React.useState(false)
+    const [isDisabled, setIsDisabled] = React.useState(false);
+    const [classNames, setClassNames] = React.useState([]);
 
     function handleButtonClick(index) {
-        props.handleAnswerClick()
-        setIsDisabled(true)
-        checkAnswer(index)
+        props.handleAnswerClick();
+        setIsDisabled(true);
+        checkAnswer(index);
     }
 
     function checkAnswer(selectedIndex) {
         if (selectedIndex === props.correct) {
-            props.increaseScore()
-            console.log("correct")
-        
-        } else {
-          console.log("incorrect")
+            props.increaseScore();
         }
+
+        const updatedClassNames = props.answers.map((_, index) =>
+            index === selectedIndex && selectedIndex === props.correct
+            ? "correct"
+            : index === selectedIndex && selectedIndex != props.correct
+            ? "incorrect"
+            : ""
+        );
+        setClassNames(updatedClassNames);
+
     }
 
     return (
         <ul className="answers">
-            <li onClick={() => handleButtonClick(0)}><span>A</span><p className={isDisabled ? "disabled" : null}>{props.answers[0]}</p></li>
-            <li onClick={() => handleButtonClick(1)}><span>B</span><p className={isDisabled ? "disabled" : null}>{props.answers[1]}</p></li>
-            <li onClick={() => handleButtonClick(2)}><span>C</span><p className={isDisabled ? "disabled" : null}>{props.answers[2]}</p></li>
-            <li onClick={() => handleButtonClick(3)}><span>D</span><p className={isDisabled ? "disabled" : null}>{props.answers[3]}</p></li>
-      </ul>
+            {props.answers.map((answer, index) => (
+                <li
+                    key={index}
+                    onClick={() => handleButtonClick(index)}
+                    className={classNames[index]}               >
+                    <span>{String.fromCharCode(65 + index)}</span>
+                    <p className={isDisabled ? "disabled" : null}>{answer}</p>
+                </li>
+            ))}
+        </ul>
     )
 }

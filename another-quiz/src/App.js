@@ -14,8 +14,6 @@ function App() {
 
   const currentQuiz = quizElements[currentQuizIndex];
 
-  console.log(currentQuiz);
-
   return (
     <div className="App">
       <header className="App-header">     

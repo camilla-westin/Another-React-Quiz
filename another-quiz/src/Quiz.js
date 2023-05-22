@@ -9,7 +9,7 @@ export default function Quiz(props) {
     });
 
     React.useEffect(() => {
-    localStorage.setItem("quizScore", score);
+        localStorage.setItem("quizScore", score);
     }, [score]);
 
     function handleAnswerClick() {

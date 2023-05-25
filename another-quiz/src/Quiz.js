@@ -4,12 +4,22 @@ import Answers from "./Answers"
 export default function Quiz(props) {
     const [showButton, setShowButton] = React.useState(false);
     const [score, setScore] = React.useState(() => {
-        const storedScore = localStorage.getItem("quizScore");
+        const storedScore = sessionStorage.getItem("quizScore");
         return storedScore ? parseInt(storedScore, 10) : 0;
     });
 
     React.useEffect(() => {
-        localStorage.setItem("quizScore", score);
+        sessionStorage.setItem("quizScore", score.toString());
+
+        const handleBeforeUnload = () => {
+          sessionStorage.removeItem("quizScore");
+        };
+    
+        window.addEventListener("beforeunload", handleBeforeUnload);
+    
+        return () => {
+          window.removeEventListener("beforeunload", handleBeforeUnload);
+        };
     }, [score]);
 
     function handleAnswerClick() {
@@ -17,8 +27,7 @@ export default function Quiz(props) {
     }  
 
     function handleIncreaseScore() {
-        setScore((prevScore) => prevScore + 1)   
-     
+        setScore((prevScore) => prevScore + 1)       
     }
 
     return (

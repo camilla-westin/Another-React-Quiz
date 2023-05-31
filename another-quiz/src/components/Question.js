@@ -50,7 +50,7 @@ export default function Question(props) {
 
             {showNextButton && <button className="fancy-btn" onClick={props.onNextButtonClick}>Next question</button>}
 
-            <Result />
+            <Result totalScore={score} />
         </div>                   
     )
 }

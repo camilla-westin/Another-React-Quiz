@@ -1,7 +1,7 @@
 import React from "react"
 import './quiz.scss';
 import data from "./data/data"
-import Question from "./Question"
+import Question from "./components/Question"
 
 function App() {
 

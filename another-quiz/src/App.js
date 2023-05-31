@@ -7,14 +7,12 @@ function App() {
 
   const [quizElements] = React.useState(data)
   const [currentQuestionIndex, setCurrentQuestionIndex] = React.useState(0)
-  const lastQuestion = data.length - 1
   const currentQuestion = quizElements[currentQuestionIndex]
 
 
   const handleNextButtonClick = () => {
     setCurrentQuestionIndex((prevIndex) => prevIndex + 1)
   };
-
 
   return (
     <div className="App">
@@ -29,7 +27,7 @@ function App() {
             question={currentQuestion.question}
             answer={currentQuestion.answers}
             correct={currentQuestion.correct}
-            total={data.length}
+            lastQuestion={data.length - 1}
             onNextButtonClick={handleNextButtonClick}
             currentQuestionIndex={currentQuestionIndex}
           />

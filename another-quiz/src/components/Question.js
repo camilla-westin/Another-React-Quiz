@@ -5,12 +5,14 @@ import Result from "./Result"
 export default function Question(props) {
 
     const [showNextButton, setShowNextButton] = React.useState(false);
+    const [showResultButton, setShowResultButton] = React.useState(false);
+    const [showResult, setShowResult] = React.useState(false)
+
     const [score, setScore] = React.useState(() => {
         const storedScore = sessionStorage.getItem("quizScore");
         return storedScore ? parseInt(storedScore, 10) : 0;
     });
     
-
     React.useEffect(() => {
         sessionStorage.setItem("quizScore", score.toString());
 
@@ -26,31 +28,40 @@ export default function Question(props) {
     }, [score]);
 
     function handleAnswerClick() {
-
-      if (!props.showResultButton) {
-        setShowNextButton(true);
-      } 
+        if (props.lastQuestion === props.currentQuestionIndex) {
+          setShowNextButton(false)
+          setShowResultButton(true)
+        } else {
+          setShowNextButton(true)
+        }
     }  
 
     function handleIncreaseScore() {
         setScore((prevScore) => prevScore + 1)       
     }
 
+    function handleShowResult() {
+      setShowResult(true)
+      setShowResultButton(false)
+    }
+
     return (
         <div className="quizbox">          
-            <h2 className="question">{props.question}</h2> 
+            {!showResult && <h2 className="question">{props.question}</h2>} 
             
+            {!showResult && 
             <Answers 
                 key={props.id}
                 answers={props.answer}
                 correct={props.correct} 
                 handleAnswerClick={handleAnswerClick}
                 increaseScore={handleIncreaseScore}
-            />           
+            />}    
 
             {showNextButton && <button className="fancy-btn" onClick={props.onNextButtonClick}>Next question</button>}
+            {showResultButton && <button className="fancy-btn" onClick={handleShowResult}>Show result</button>}
 
-            <Result totalScore={score} />
+            {showResult && <Result totalScore={score} />}
         </div>                   
     )
 }

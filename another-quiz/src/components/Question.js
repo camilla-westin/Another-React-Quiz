@@ -3,10 +3,10 @@ import Answers from "./Answers"
 import Result from "./Result"
 
 export default function Question(props) {
-
     const [showNextButton, setShowNextButton] = React.useState(false);
     const [showResultButton, setShowResultButton] = React.useState(false);
     const [showResult, setShowResult] = React.useState(false)
+    const [scorePercentage, setScorePercentage] = React.useState(0)
 
     const [score, setScore] = React.useState(() => {
         const storedScore = sessionStorage.getItem("quizScore");
@@ -43,6 +43,10 @@ export default function Question(props) {
     function handleShowResult() {
       setShowResult(true)
       setShowResultButton(false)
+      setScorePercentage(() => {
+        const percentage = (score / props.questionSum) * 100;
+        return percentage.toFixed(2);
+      })
     }
 
     return (
@@ -61,7 +65,7 @@ export default function Question(props) {
             {showNextButton && <button className="fancy-btn" onClick={props.onNextButtonClick}>Next question</button>}
             {showResultButton && <button className="fancy-btn" onClick={handleShowResult}>Show result</button>}
 
-            {showResult && <Result totalScore={score} />}
+            {showResult && <Result totalScore={score} sumPercentage={scorePercentage} />} 
         </div>                   
     )
 }

@@ -28,6 +28,7 @@ function App() {
             answer={currentQuestion.answers}
             correct={currentQuestion.correct}
             lastQuestion={data.length - 1}
+            questionSum={data.length}
             onNextButtonClick={handleNextButtonClick}
             currentQuestionIndex={currentQuestionIndex}
           />

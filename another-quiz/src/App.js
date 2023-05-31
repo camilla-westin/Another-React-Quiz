@@ -1,18 +1,20 @@
 import React from "react"
 import './quiz.scss';
 import data from "./data/data"
-import Quiz from "./Quiz"
+import Question from "./Question"
 
 function App() {
 
   const [quizElements] = React.useState(data)
-  const [currentQuizIndex, setCurrentQuizIndex] = React.useState(0);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = React.useState(0)
+  const lastQuestion = data.length - 1
+  const currentQuestion = quizElements[currentQuestionIndex]
+
 
   const handleNextButtonClick = () => {
-    setCurrentQuizIndex((prevIndex) => prevIndex + 1);
+    setCurrentQuestionIndex((prevIndex) => prevIndex + 1)
   };
 
-  const currentQuiz = quizElements[currentQuizIndex];
 
   return (
     <div className="App">
@@ -20,20 +22,21 @@ function App() {
         <h1>Another React Quiz</h1>
       </header>
       <div className="quiz">
-      {currentQuiz && (
-          <Quiz
-            key={currentQuiz.id}
-            id={currentQuiz.id}
-            question={currentQuiz.question}
-            answer={currentQuiz.answers}
-            correct={currentQuiz.correct}
+      {currentQuestion && (
+          <Question
+            key={currentQuestion.id}
+            id={currentQuestion.id}
+            question={currentQuestion.question}
+            answer={currentQuestion.answers}
+            correct={currentQuestion.correct}
             total={data.length}
             onNextButtonClick={handleNextButtonClick}
+            currentQuestionIndex={currentQuestionIndex}
           />
         )}
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

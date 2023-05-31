@@ -1,12 +1,15 @@
 import React from "react"
 import Answers from "./Answers"
+import Result from "./Result"
 
-export default function Quiz(props) {
-    const [showButton, setShowButton] = React.useState(false);
+export default function Question(props) {
+
+    const [showNextButton, setShowNextButton] = React.useState(false);
     const [score, setScore] = React.useState(() => {
         const storedScore = sessionStorage.getItem("quizScore");
         return storedScore ? parseInt(storedScore, 10) : 0;
     });
+    
 
     React.useEffect(() => {
         sessionStorage.setItem("quizScore", score.toString());
@@ -23,7 +26,10 @@ export default function Quiz(props) {
     }, [score]);
 
     function handleAnswerClick() {
-      setShowButton(true);
+
+      if (!props.showResultButton) {
+        setShowNextButton(true);
+      } 
     }  
 
     function handleIncreaseScore() {
@@ -31,8 +37,7 @@ export default function Quiz(props) {
     }
 
     return (
-        <div className="quizbox"> 
-            <div>Score: {score}</div>
+        <div className="quizbox">          
             <h2 className="question">{props.question}</h2> 
             
             <Answers 
@@ -43,7 +48,9 @@ export default function Quiz(props) {
                 increaseScore={handleIncreaseScore}
             />           
 
-            {showButton && <button className="fancy-btn" onClick={props.onNextButtonClick}>Next question</button>}  
+            {showNextButton && <button className="fancy-btn" onClick={props.onNextButtonClick}>Next question</button>}
+
+            <Result />
         </div>                   
     )
 }

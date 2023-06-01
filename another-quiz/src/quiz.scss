@@ -1,13 +1,18 @@
-﻿body {
-    background-color: #1D9AA6;
-    font-family: Helvetica, sans-serif;
+﻿@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;700&display=swap');
+
+body {
+    background: rgb(31,155,167);
+    background: radial-gradient(circle, rgba(31,155,167,1) 0%, rgba(29,154,166,1) 35%, rgba(0,188,226,1) 100%);
+    font-family: 'Roboto Slab', serif;
+
 }
 
 h1 {
-    font-family: Arial;
-    font-weight: normal;
+    font-weight: 700;
     font-size: 50px;
     text-align: center;
+    color: #f6f6f6;
+    margin-top: 100px;
 }
 
 .quiz {
@@ -36,6 +41,10 @@ h1 {
     padding: 30px;
     max-width: 90%;
     margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: 2px 1px 5px -1px rgba(18,125,134,0.57);
+    -webkit-box-shadow: 2px 1px 5px -1px rgba(18,125,134,0.57);
+    -moz-box-shadow: 2px 1px 5px -1px rgba(18,125,134,0.57);
 
     @media (min-width: 800px) {
         max-width: 790px;
@@ -44,9 +53,11 @@ h1 {
 }
 
 .question {
-    color: darkblue;
+    color: #222;
     font-size: 22px;
+    font-weight: 400;
     line-height: 1.2;
+    margin: 0;
 
     @media (min-width: 600px) {
         font-size: 26px;
@@ -60,7 +71,7 @@ h1 {
 .question-total {
     padding-bottom: 10px;
     font-size: 18px;
-    color: darkblue;
+    color: #222;
     margin: 0 auto;
     display: block;
 
@@ -80,9 +91,9 @@ h1 {
 ul.answers {
     list-style-type: none;
     padding: 0;
-    margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
+    margin-top: 20px; 
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 
     @media (min-width: 600px) {
         margin: 50px auto 0 auto;
@@ -90,12 +101,13 @@ ul.answers {
 
     li {
         cursor: pointer;
-        color: darkblue;
+        color: #222;
+        font-weight: 300;
         text-align: left;
-        width: 50%;
-        display: flex;
+        display: grid;
+        grid-template-columns: 45px 1fr;
         align-items: center;
-
+      
         &:after {
             display: block;
         }
@@ -141,9 +153,7 @@ ul.answers {
         }
 
         p {
-            display: flex;
-            align-items: center;
-            color: darkblue;
+            color: #222;
             font-size: 18px;
             line-height: 1.2;
             margin: 13px 0;
@@ -165,17 +175,16 @@ ul.answers {
         span {
             color: #fff;
             background-color: pink;
-            border-radius: 50%;
-            width: 35px;
-            height: 35px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-shrink: 0;
+            border-radius: 50%;        
             margin-right: 20px;
             transition-property: transform, background-color;
             transition-timing-function: ease;
             transition-duration: .3s;
+            width: 35px;
+            height: 35px;
+            display: grid;
+            justify-items: center;
+            align-items: center;
         }
     }   
 }
@@ -197,18 +206,7 @@ ul.answers {
     &:hover, &:focus, &:active {
         transform: scale(1.03);
         outline: none;
-    }
-
-    &.share-btn {
-        display: flex;
-        align-items: center;
-        padding: 15px 35px;
-        margin: 20px auto 0 auto;
-
-        span {
-            padding-left: 10px;
-        }
-    }
+    } 
 }
 
 .app-container {

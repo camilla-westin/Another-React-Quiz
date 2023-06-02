@@ -2,7 +2,7 @@ import React from "react"
 import Answers from "./Answers"
 import Result from "./Result"
 
-export default function Question(props) {
+export default function Question({answer, correct, currentQuestionIndex, id, lastQuestion, onNextButtonClick, question, questionSum}) {
     const [showNextButton, setShowNextButton] = React.useState(false);
     const [showResultButton, setShowResultButton] = React.useState(false);
     const [showResult, setShowResult] = React.useState(false)
@@ -28,7 +28,7 @@ export default function Question(props) {
     }, [score]);
 
     function handleAnswerClick() {
-        if (props.lastQuestion === props.currentQuestionIndex) {
+        if (lastQuestion === currentQuestionIndex) {
           setShowNextButton(false)
           setShowResultButton(true)
         } else {
@@ -44,25 +44,25 @@ export default function Question(props) {
       setShowResult(true)
       setShowResultButton(false)
       setScorePercentage(() => {
-        const percentage = (score / props.questionSum) * 100;
+        const percentage = (score / questionSum) * 100;
         return percentage.toFixed(2);
       })
     }
 
     return (
         <div className="quizbox">          
-            {!showResult && <h2 className="question">{props.question}</h2>} 
+            {!showResult && <h2 className="question">{question}</h2>} 
             
             {!showResult && 
             <Answers 
-                key={props.id}
-                answers={props.answer}
-                correct={props.correct} 
+                key={id}
+                answers={answer}
+                correct={correct} 
                 handleAnswerClick={handleAnswerClick}
                 increaseScore={handleIncreaseScore}
             />}    
 
-            {showNextButton && <button className="fancy-btn" onClick={props.onNextButtonClick}>Next question</button>}
+            {showNextButton && <button className="fancy-btn" onClick={onNextButtonClick}>Next question</button>}
             {showResultButton && <button className="fancy-btn" onClick={handleShowResult}>Show result</button>}
 
             {showResult && <Result totalScore={score} sumPercentage={scorePercentage} />} 

@@ -1,24 +1,24 @@
 import React from "react"
 
-export default function Answers(props) {
+export default function Answers({answers, correct, handleAnswerClick, increaseScore}) {
     const [isDisabled, setIsDisabled] = React.useState(false);
     const [classNames, setClassNames] = React.useState([]);
 
     function handleButtonClick(index) {
-        props.handleAnswerClick();
+        handleAnswerClick();
         setIsDisabled(true);
         checkAnswer(index);
     }
 
     function checkAnswer(selectedIndex) {
-        if (selectedIndex === props.correct) {
-            props.increaseScore();
+        if (selectedIndex === correct) {
+            increaseScore();
         }
 
-        const updatedClassNames = props.answers.map((_, index) =>
-            index === selectedIndex && selectedIndex === props.correct
+        const updatedClassNames = answers.map((_, index) =>
+            index === selectedIndex && selectedIndex === correct
             ? "correct"
-            : index === selectedIndex && selectedIndex !== props.correct
+            : index === selectedIndex && selectedIndex !== correct
             ? "incorrect"
             : ""
         );
@@ -28,7 +28,7 @@ export default function Answers(props) {
 
     return (
         <ul className="answers">
-            {props.answers.map((answer, index) => (
+            {answers.map((answer, index) => (
                 <li
                     key={index}
                     onClick={() => handleButtonClick(index)}

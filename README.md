@@ -1,3 +1,7 @@
+
+![anotherquiz](https://github.com/camilla-westin/Another-React-Quiz/assets/5926916/b5c77323-644b-403e-a374-c11a065c36e3)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

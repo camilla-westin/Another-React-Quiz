@@ -1,4 +1,4 @@
-export default [
+const questionsArray = [
     {
         id: 1,
         question: 'What does CSS stand for?',
@@ -57,3 +57,5 @@ export default [
         
     }
 ]
+
+export default questionsArray
